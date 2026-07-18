@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Furniture | Luxury Crafted for Every Space | Oshiwara, Mumbai</title>
+    <meta name="description" content="Luxe Furniture - Premium furniture showroom in Oshiwara, Jogeshwari West, Mumbai. Handcrafted sofas, dining sets, beds, custom furniture by Mr Saif Khan. Call 9892199048.">
+    <meta name="keywords" content="luxury furniture mumbai, luxe furniture oshiwara, custom furniture jogeshwari, premium sofa mumbai, dining set mumbai, bespoke furniture mumbai, king size bed mumbai">
+    <meta name="author" content="Mr Saif Khan - Luxe Furniture">
+    <meta property="og:title" content="Luxe Furniture | Premium Furniture for Luxury Living">
+    <meta property="og:description" content="Discover handcrafted luxury furniture in Mumbai. Sofas, dining sets, beds & custom furniture by Luxe Furniture.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://luxefurniture.in">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: { DEFAULT: '#C9A96E', light: '#E8D5B0', dark: '#A08040', 50: '#FDF8F0', 100: '#F8EDD8' },
+                        walnut: '#5C3D2E',
+                        'dark-brown': '#3E2723',
+                        beige: '#F5F0E8',
+                        cream: '#FAF6F0',
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .5s ease,color .5s ease;overflow-x:hidden}
+        :root{
+            --bg:#0A0A0A;--bg-secondary:#111111;--bg-tertiary:#1A1A1A;
+            --text:#F5F0E8;--text-secondary:#A0A0A0;--text-muted:#6B6B6B;
+            --border:rgba(201,169,110,.15);--border-hover:rgba(201,169,110,.4);
+            --glass-bg:rgba(10,10,10,.8);--glass-border:rgba(201,169,110,.1);
+            --card-bg:#141414;--card-hover:#1A1A1A;
+            --input-bg:#1A1A1A;--input-border:rgba(201,169,110,.2)
+        }
+        [data-theme="light"]{
+            --bg:#FFFFFF;--bg-secondary:#F5F0E8;--bg-tertiary:#FAF6F0;
+            --text:#1A1A1A;--text-secondary:#6B6B6B;--text-muted:#9B9B9B;
+            --border:rgba(201,169,110,.2);--border-hover:rgba(201,169,110,.5);
+            --glass-bg:rgba(255,255,255,.85);--glass-border:rgba(201,169,110,.15);
+            --card-bg:#FFFFFF;--card-hover:#FDF8F0;
+            --input-bg:#F5F0E8;--input-border:rgba(201,169,110,.3)
+        }
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:#C9A96E;border-radius:3px}
+        #loader{position:fixed;inset:0;z-index:9999;background:#0A0A0A;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+        #loader.hidden{opacity:0;visibility:hidden}
+        .loader-ring{width:50px;height:50px;border:2px solid rgba(201,169,110,.1);border-top-color:#C9A96E;border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .glass{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border)}
+        .fade-up{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-up.visible{opacity:1;transform:translateY(0)}
+        .fade-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-left.visible{opacity:1;transform:translateX(0)}
+        .fade-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
+        .fade-right.visible{opacity:1;transform:translateX(0)}
+        .scale-in{opacity:0;transform:scale(.9);transition:opacity .6s ease,transform .6s ease}
+        .scale-in.visible{opacity:1;transform:scale(1)}
+        .gold-divider{display:flex;align-items:center;justify-content:center;gap:12px}
+        .gold-divider::before,.gold-divider::after{content:'';height:1px;width:60px;background:linear-gradient(to right,transparent,#C9A96E,transparent)}
+        .hero-parallax{transition:transform .1s ease-out;will-change:transform}
+        .category-card{transition:all .5s cubic-bezier(.25,.46,.45,.94)}
+        .category-card:hover{transform:translateY(-8px)}
+        .category-card .card-img{transition:transform .7s ease}
+        .category-card:hover .card-img{transform:scale(1.08)}
+        .category-card .card-overlay{transition:opacity .5s ease}
+        .category-card:hover .card-overlay{opacity:1}
+        .masonry{columns:3;column-gap:16px}
+        .masonry-item{break-inside:avoid;margin-bottom:16px}
+        @media(max-width:1024px){.masonry{columns:2}}
+        @media(max-width:640px){.masonry{columns:1}}
+        #lightbox{cursor:zoom-out}
+        #lightbox img{cursor:default;max-height:90vh;max-width:90vw;object-fit:contain}
+        .testimonial-track{display:flex;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+        .nav-scrolled{padding-top:12px!important;padding-bottom:12px!important}
+        #mobile-menu{transition:opacity .3s ease,visibility .3s ease,transform .3s ease}
+        #mobile-menu.open{opacity:1;visibility:visible;transform:translateX(0)}
+        #mobile-menu:not(.open){opacity:0;visibility:hidden;transform:translateX(100%)}
+        .btn-gold{background:linear-gradient(135deg,#C9A96E,#A08040);color:#0A0A0A;font-weight:600;transition:all .3s ease;position:relative;overflow:hidden}
+        .btn-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#E8D5B0,#C9A96E);opacity:0;transition:opacity .3s ease}
+        .btn-gold:hover::before{opacity:1}
+        .btn-gold span{position:relative;z-index:1}
+        .btn-outline{border:1px solid #C9A96E;color:#C9A96E;transition:all .3s ease}
+        .btn-outline:hover{background:#C9A96E;color:#0A0A0A}
+        .btn-dark{background:var(--text);color:var(--bg);transition:all .3s ease}
+        .btn-dark:hover{opacity:.85}
+        .heart-btn{transition:all .3s ease}
+        .heart-btn.active svg{fill:#C9A96E;stroke:#C9A96E}
+        .heart-btn:hover{transform:scale(1.2)}
+        .toast{animation:toastIn .4s ease,toastOut .4s ease 2.6s forwards}
+        @keyframes toastIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+        @keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateY(-10px)}}
+        .gold-shimmer{background:linear-gradient(110deg,#C9A96E 0%,#E8D5B0 25%,#C9A96E 50%,#E8D5B0 75%,#C9A96E 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s ease infinite}
+        @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+        .grain::after{content:'';position:absolute;inset:0;opacity:.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
+        .star{color:#C9A96E}
+        .form-input:focus{border-color:#C9A96E!important;box-shadow:0 0 0 3px rgba(201,169,110,.1)}
+        .whatsapp-pulse{animation:pulse 2s infinite}
+        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+        #category-modal{transition:opacity .3s ease,visibility .3s ease}
+        #category-modal.open{opacity:1;visibility:visible}
+        #category-modal:not(.open){opacity:0;visibility:hidden}
+        #category-modal .modal-content{transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+        #category-modal.open .modal-content{transform:translateY(0)}
+        #category-modal:not(.open) .modal-content{transform:translateY(30px)}
+        #search-modal{transition:opacity .3s ease,visibility .3s ease}
+        #search-modal.open{opacity:1;visibility:visible}
+        #search-modal:not(.open){opacity:0;visibility:hidden}
+        #wishlist-sidebar{transition:transform .4s cubic-bezier(.25,.46,.45,.94),visibility .4s ease}
+        #wishlist-sidebar.open{transform:translateX(0);visibility:visible}
+        #wishlist-sidebar:not(.open){transform:translateX(100%);visibility:hidden}
+        section{position:relative}
+        .img-zoom{overflow:hidden}
+        .img-zoom img{transition:transform .7s ease}
+        .img-zoom:hover img{transform:scale(1.05)}
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="loader-ring mx-auto mb-4"></div>
+            <p class="font-display text-gold text-lg tracking-widest uppercase">Luxe Furniture</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-24 right-6 z-[100] flex flex-col gap-2"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass transition-all duration-500 py-5 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 border border-gold/40 flex items-center justify-center group-hover:bg-gold/10 transition-colors duration-300">
+                    <span class="font-display text-gold text-xl font-semibold">L</span>
+                </div>
+                <div>
+                    <span class="font-display text-xl text-[var(--text)] tracking-wide">Luxe <span class="gold-shimmer">Furniture</span></span>
+                    <p class="text-[9px] tracking-[0.25em] uppercase text-[var(--text-muted)] leading-none mt-0.5">Luxury Crafted</p>
+                </div>
+            </a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#hero" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Home</a>
+                <a href="#about" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">About</a>
+                <a href="#categories" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Categories</a>
+                <a href="#custom" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Custom</a>
+                <a href="#gallery" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Gallery</a>
+                <a href="#testimonials" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Reviews</a>
+                <a href="#contact" class="text-sm tracking-wide text-[var(--text-secondary)] hover:text-gold transition-colors duration-300">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="openSearch()" class="w-10 h-10 flex items-center justify-center text-[var(--text-secondary)] hover:text-gold transition-colors" title="Search"><i data-lucide="search" class="w-[18px] h-[18px]"></i></button>
+                <button onclick="toggleWishlist()" class="w-10 h-10 flex items-center justify-center text-[var(--text-secondary)] hover:text-gold transition-colors relative" title="Wishlist"><i data-lucide="heart" class="w-[18px] h-[18px]"></i><span id="wishlist-count" class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-gold text-[10px] text-black font-bold rounded-full flex items-center justify-center hidden">0</span></button>
+                <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center text-[var(--text-secondary)] hover:text-gold transition-colors" title="Toggle Theme"><i data-lucide="sun" class="w-[18px] h-[18px] hidden" id="icon-sun"></i><i data-lucide="moon" class="w-[18px] h-[18px]" id="icon-moon"></i></button>
+                <a href="tel:9892199048" class="hidden md:flex btn-gold px-5 py-2.5 rounded-sm text-xs tracking-widest uppercase"><span>Call Now</span></a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 flex items-center justify-center text-[var(--text-secondary)] hover:text-gold transition-colors"><i data-lucide="menu" class="w-5 h-5" id="menu-icon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#0A0A0A]/98 backdrop-blur-xl flex flex-col">
+        <div class="flex items-center justify-between p-6">
+            <span class="font-display text-xl text-gold">Luxe Furniture</span>
+            <button onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center text-white hover:text-gold transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center gap-6">
+            <a href="#hero" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">About</a>
+            <a href="#categories" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Categories</a>
+            <a href="#custom" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Custom</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Gallery</a>
+            <a href="#testimonials" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Reviews</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="font-display text-2xl text-white hover:text-gold transition-colors">Contact</a>
+            <div class="mt-6 flex gap-4">
+                <a href="tel:9892199048" class="btn-gold px-6 py-3 rounded-sm text-xs tracking-widest uppercase"><span>Call Now</span></a>
+                <a href="https://wa.me/919892199048?text=Hi%20Mr%20Saif%2C%20I%20am%20interested%20in%20your%20furniture." target="_blank" class="btn-outline px-6 py-3 rounded-sm text-xs tracking-widest uppercase">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 z-[70] bg-black/80 backdrop-blur-md flex items-start justify-center pt-32 px-6" onclick="closeSearch(event)">
+        <div class="w-full max-w-2xl" onclick="event.stopPropagation()">
+            <div class="relative">
+                <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gold"></i>
+                <input id="search-input" type="text" placeholder="Search sofas, chairs, beds, dining tables..." class="w-full bg-[var(--card-bg)] border border-[var(--border)] rounded-sm py-4 pl-14 pr-14 text-lg text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input" oninput="handleSearch(this.value)">
+                <button onclick="closeSearch()" class="absolute right-5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-gold transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="search-results" class="mt-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-sm max-h-80 overflow-y-auto hidden"></div>
+        </div>
+    </div>
+
+    <!-- Category Detail Modal -->
+    <div id="category-modal" class="fixed inset-0 z-[70] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8" onclick="closeCategoryModal(event)">
+        <div class="modal-content w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-[var(--card-bg)] border border-[var(--border)] rounded-sm" onclick="event.stopPropagation()">
+            <div class="sticky top-0 z-10 bg-[var(--card-bg)] border-b border-[var(--border)] flex items-center justify-between p-6">
+                <div>
+                    <h3 id="modal-cat-title" class="font-display text-2xl text-[var(--text)]"></h3>
+                    <p id="modal-cat-subtitle" class="text-sm text-[var(--text-muted)] mt-1"></p>
+                </div>
+                <button onclick="closeCategoryModal()" class="w-10 h-10 flex items-center justify-center text-[var(--text-muted)] hover:text-gold transition-colors border border-[var(--border)] rounded-sm"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="modal-products" class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[80] bg-black/95 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors z-10"><i data-lucide="x" class="w-8 h-8"></i></button>
+        <button onclick="event.stopPropagation();lightboxNav(-1)" class="absolute left-4 md:left-8 text-white/40 hover:text-white transition-colors z-10"><i data-lucide="chevron-left" class="w-10 h-10"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery" class="rounded-sm shadow-2xl" onclick="event.stopPropagation()">
+        <button onclick="event.stopPropagation();lightboxNav(1)" class="absolute right-4 md:right-8 text-white/40 hover:text-white transition-colors z-10"><i data-lucide="chevron-right" class="w-10 h-10"></i></button>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div id="wishlist-overlay" class="fixed inset-0 z-[75] bg-black/50 hidden" onclick="toggleWishlist()"></div>
+    <div id="wishlist-sidebar" class="fixed top-0 right-0 bottom-0 z-[76] w-full max-w-md bg-[var(--card-bg)] border-l border-[var(--border)] flex flex-col">
+        <div class="flex items-center justify-between p-6 border-b border-[var(--border)]">
+            <h3 class="font-display text-xl text-[var(--text)]">Wishlist</h3>
+            <button onclick="toggleWishlist()" class="text-[var(--text-muted)] hover:text-gold transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div id="wishlist-items" class="flex-1 overflow-y-auto p-6"></div>
+        <div class="p-6 border-t border-[var(--border)]">
+            <a href="https://wa.me/919892199048?text=Hi%20Mr%20Saif%2C%20I%20am%20interested%20in%20the%20following%20items%20from%20my%20wishlist%20at%20Luxe%20Furniture." target="_blank" class="btn-gold w-full py-3 rounded-sm text-xs tracking-widest uppercase text-center block"><span>Inquire on WhatsApp</span></a>
+        </div>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden grain">
+        <div class="hero-parallax absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80" alt="Luxury Living Room with Premium Sofa and Furniture" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center md:text-left w-full">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
+                    <div class="h-px w-12 bg-gold/60"></div>
+                    <span class="text-gold text-xs tracking-[0.3em] uppercase font-medium">Established in Mumbai</span>
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight">
+                    Premium Furniture<br>
+                    <span class="gold-shimmer">for Luxury Living</span>
+                </h1>
+                <p class="mt-6 text-white/70 text-base md:text-lg max-w-xl leading-relaxed font-light">
+                    Discover handcrafted sofas, dining sets, premium chairs, beds, wardrobes, office furniture, and bespoke furniture tailored to your lifestyle.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-10 justify-center md:justify-start">
+                    <a href="#categories" class="btn-gold px-8 py-4 rounded-sm text-xs tracking-[0.2em] uppercase"><span>Explore Collection</span></a>
+                    <a href="#custom" class="btn-outline px-8 py-4 rounded-sm text-xs tracking-[0.2em] uppercase">Get Custom Furniture</a>
+                    <a href="#contact" class="btn-dark px-8 py-4 rounded-sm text-xs tracking-[0.2em] uppercase">Contact Us</a>
+                </div>
+                <div class="flex items-center gap-8 mt-12 justify-center md:justify-start">
+                    <div class="text-center"><p class="text-2xl font-display text-gold">500+</p><p class="text-[10px] tracking-widest uppercase text-white/50 mt-1">Projects Done</p></div>
+                    <div class="w-px h-10 bg-white/10"></div>
+                    <div class="text-center"><p class="text-2xl font-display text-gold">10+</p><p class="text-[10px] tracking-widest uppercase text-white/50 mt-1">Years Experience</p></div>
+                    <div class="w-px h-10 bg-white/10"></div>
+                    <div class="text-center"><p class="text-2xl font-display text-gold">100%</p><p class="text-[10px] tracking-widest uppercase text-white/50 mt-1">Customisable</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"><i data-lucide="chevron-down" class="w-6 h-6 text-gold/60"></i></div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="py-24 md:py-32 relative" style="background:var(--bg-secondary)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="fade-left relative">
+                    <div class="relative img-zoom rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=700&q=80" alt="Luxe Furniture Workshop - Handcrafting Premium Sofa" class="w-full h-[500px] md:h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8 bg-gold text-black p-6 rounded-sm">
+                        <p class="font-display text-3xl font-bold">10+</p>
+                        <p class="text-xs tracking-widest uppercase mt-1">Years of<br>Excellence</p>
+                    </div>
+                    <div class="absolute top-0 left-0 w-full h-full border border-gold/20 rounded-sm pointer-events-none"></div>
+                </div>
+                <div class="fade-right">
+                    <div class="gold-divider mb-6"><span class="text-gold text-xs tracking-[0.3em] uppercase">About Us</span></div>
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] leading-tight tracking-tight">Mumbai's Trusted <span class="text-gold">Luxury Furniture</span> Showroom</h2>
+                    <p class="mt-6 text-[var(--text-secondary)] leading-relaxed">Welcome to <strong class="text-[var(--text)]">Luxe Furniture</strong>, a premium furniture showroom located in Oshiwara, Jogeshwari West, Mumbai. Founded by <strong class="text-[var(--text)]">Mr Saif Khan</strong>, we specialise in crafting high-quality furniture for homes, offices, hotels, restaurants, cafés, villas, and commercial spaces.</p>
+                    <p class="mt-4 text-[var(--text-secondary)] leading-relaxed">Every piece we create reflects our commitment to premium craftsmanship, superior materials, and timeless design. Whether you need a single statement piece or a complete interior solution, we deliver excellence.</p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="gem" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">Premium Craftsmanship</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Handcrafted with precision</p></div></div>
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="shield-check" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">High-Quality Materials</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Sourced from best suppliers</p></div></div>
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="ruler" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">Custom-Made</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Tailored to your space</p></div></div>
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="palette" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">Modern & Classic</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Diverse design styles</p></div></div>
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="truck" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">Professional Install</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Expert setup at your door</p></div></div>
+                        <div class="flex items-start gap-3 p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)"><i data-lucide="headphones" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i><div><p class="text-sm font-medium text-[var(--text)]">After-Sales Support</p><p class="text-xs text-[var(--text-muted)] mt-0.5">Reliable & responsive</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section id="categories" class="py-24 md:py-32 relative" style="background:var(--bg)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <div class="gold-divider mb-6"><span class="text-gold text-xs tracking-[0.3em] uppercase">Our Collection</span></div>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] tracking-tight">Product Categories</h2>
+                <p class="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto">Explore our curated collection of premium furniture, each piece crafted with exceptional quality and timeless elegance.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mb-12 fade-up">
+                <button onclick="filterCategories('all')" class="cat-filter active px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] transition-all duration-300" data-filter="all">All</button>
+                <button onclick="filterCategories('seating')" class="cat-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="seating">Seating</button>
+                <button onclick="filterCategories('tables')" class="cat-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="tables">Tables</button>
+                <button onclick="filterCategories('bedroom')" class="cat-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="bedroom">Bedroom</button>
+                <button onclick="filterCategories('office')" class="cat-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="office">Office</button>
+            </div>
+            <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- ========== CUSTOM FURNITURE ========== -->
+    <section id="custom" class="py-24 md:py-32 relative overflow-hidden" style="background:var(--bg-secondary)">
+        <div class="absolute inset-0 opacity-5"><img src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=1920&q=60" alt="" class="w-full h-full object-cover"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+                <div class="fade-left">
+                    <div class="gold-divider mb-6 justify-start"><span class="text-gold text-xs tracking-[0.3em] uppercase">Bespoke Solutions</span></div>
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] tracking-tight leading-tight">Fully <span class="text-gold">Customised</span> Furniture</h2>
+                    <p class="mt-6 text-[var(--text-secondary)] leading-relaxed">At Luxe Furniture, we design and manufacture custom furniture based on your exact requirements. Every detail is tailored to match your vision, space, and lifestyle.</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="move" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Size</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="layers" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Material</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="shirt" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Fabric</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="pipette" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Color</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="sparkles" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Finish</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="archive" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Storage</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="pen-tool" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Design</p></div>
+                        <div class="text-center p-4 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><i data-lucide="maximize-2" class="w-6 h-6 text-gold mx-auto mb-2"></i><p class="text-xs font-medium text-[var(--text)]">Dimensions</p></div>
+                    </div>
+                </div>
+                <div class="fade-right">
+                    <div class="p-8 rounded-sm border border-[var(--border)]" style="background:var(--card-bg)">
+                        <h3 class="font-display text-xl text-[var(--text)] mb-6">Request a Custom Quote</h3>
+                        <form id="custom-form" onsubmit="handleCustomForm(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Your Name *" required class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                                <input type="tel" placeholder="Phone Number *" required class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            </div>
+                            <input type="email" placeholder="Email Address" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            <select class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text-muted)] focus:outline-none form-input">
+                                <option value="">Select Furniture Type</option>
+                                <option>Sofa</option><option>Dining Set</option><option>Bed</option><option>Wardrobe</option><option>Office Desk</option><option>Chair</option><option>Table</option><option>Other</option>
+                            </select>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Preferred Material" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                                <input type="text" placeholder="Size / Dimensions" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            </div>
+                            <textarea placeholder="Describe your requirements in detail..." rows="3" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input resize-none"></textarea>
+                            <div class="border-2 border-dashed border-[var(--border)] rounded-sm p-6 text-center hover:border-gold/40 transition-colors cursor-pointer" onclick="document.getElementById('ref-upload').click()">
+                                <i data-lucide="upload-cloud" class="w-8 h-8 text-gold/50 mx-auto mb-2"></i>
+                                <p class="text-xs text-[var(--text-muted)]">Upload Reference Image (Optional)</p>
+                                <p class="text-[10px] text-[var(--text-muted)] mt-1">JPG, PNG up to 5MB</p>
+                                <input type="file" id="ref-upload" accept="image/*" class="hidden" onchange="handleFileUpload(this)">
+                                <p id="file-name" class="text-xs text-gold mt-2 hidden"></p>
+                            </div>
+                            <button type="submit" class="btn-gold w-full py-4 rounded-sm text-xs tracking-[0.2em] uppercase"><span>Submit Custom Quote Request</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section id="gallery" class="py-24 md:py-32 relative" style="background:var(--bg)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <div class="gold-divider mb-6"><span class="text-gold text-xs tracking-[0.3em] uppercase">Our Work</span></div>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] tracking-tight">Project Gallery</h2>
+                <p class="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto">Explore our completed furniture projects across residential and commercial spaces.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mb-12 fade-up">
+                <button onclick="filterGallery('all')" class="gal-filter active px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] transition-all duration-300" data-filter="all">All</button>
+                <button onclick="filterGallery('living')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="living">Living Room</button>
+                <button onclick="filterGallery('bedroom')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="bedroom">Bedroom</button>
+                <button onclick="filterGallery('dining')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="dining">Dining</button>
+                <button onclick="filterGallery('office')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="office">Office</button>
+                <button onclick="filterGallery('hospitality')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="hospitality">Hotels & Restaurants</button>
+                <button onclick="filterGallery('commercial')" class="gal-filter px-5 py-2 rounded-sm text-xs tracking-widest uppercase border border-[var(--border)] text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-all duration-300" data-filter="commercial">Commercial</button>
+            </div>
+            <div id="gallery-grid" class="masonry fade-up"></div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section id="testimonials" class="py-24 md:py-32 relative overflow-hidden" style="background:var(--bg-secondary)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <div class="gold-divider mb-6"><span class="text-gold text-xs tracking-[0.3em] uppercase">Client Reviews</span></div>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] tracking-tight">What Our Clients Say</h2>
+            </div>
+            <div class="relative fade-up">
+                <div class="overflow-hidden"><div id="testimonial-track" class="testimonial-track"></div></div>
+                <div class="flex items-center justify-center gap-4 mt-10">
+                    <button onclick="navTestimonial(-1)" class="w-12 h-12 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                    <div id="testimonial-dots" class="flex gap-2"></div>
+                    <button onclick="navTestimonial(1)" class="w-12 h-12 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-secondary)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="py-24 md:py-32 relative" style="background:var(--bg)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <div class="gold-divider mb-6"><span class="text-gold text-xs tracking-[0.3em] uppercase">Get In Touch</span></div>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--text)] tracking-tight">Contact Us</h2>
+                <p class="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto">Visit our showroom or reach out to discuss your furniture requirements.</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="fade-left space-y-6">
+                    <div class="p-6 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><div class="flex items-start gap-4"><div class="w-12 h-12 bg-gold/10 rounded-sm flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" class="w-5 h-5 text-gold"></i></div><div><h4 class="text-sm font-medium text-[var(--text)]">Showroom Address</h4><p class="text-sm text-[var(--text-secondary)] mt-1 leading-relaxed">Oshiwara, Jogeshwari West,<br>Mumbai, Maharashtra, India</p></div></div></div>
+                    <div class="p-6 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><div class="flex items-start gap-4"><div class="w-12 h-12 bg-gold/10 rounded-sm flex items-center justify-center flex-shrink-0"><i data-lucide="user" class="w-5 h-5 text-gold"></i></div><div><h4 class="text-sm font-medium text-[var(--text)]">Owner</h4><p class="text-sm text-[var(--text-secondary)] mt-1">Mr Saif Khan</p></div></div></div>
+                    <div class="p-6 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><div class="flex items-start gap-4"><div class="w-12 h-12 bg-gold/10 rounded-sm flex items-center justify-center flex-shrink-0"><i data-lucide="phone" class="w-5 h-5 text-gold"></i></div><div><h4 class="text-sm font-medium text-[var(--text)]">Phone</h4><a href="tel:9892199048" class="text-sm text-gold hover:underline mt-1 block">+91 98921 99048</a></div></div></div>
+                    <div class="p-6 rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors" style="background:var(--card-bg)"><div class="flex items-start gap-4"><div class="w-12 h-12 bg-gold/10 rounded-sm flex items-center justify-center flex-shrink-0"><i data-lucide="clock" class="w-5 h-5 text-gold"></i></div><div><h4 class="text-sm font-medium text-[var(--text)]">Business Hours</h4><p class="text-sm text-[var(--text-secondary)] mt-1">Mon - Sat: 10:00 AM - 9:00 PM<br>Sunday: 11:00 AM - 7:00 PM</p></div></div></div>
+                </div>
+                <div class="fade-up">
+                    <div class="p-8 rounded-sm border border-[var(--border)] h-full" style="background:var(--card-bg)">
+                        <h3 class="font-display text-xl text-[var(--text)] mb-6">Send Us a Message</h3>
+                        <form id="contact-form" onsubmit="handleContactForm(event)" class="space-y-4">
+                            <input type="text" placeholder="Your Name *" required class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            <input type="tel" placeholder="Phone Number *" required class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            <input type="email" placeholder="Email Address" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            <input type="text" placeholder="Subject" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input">
+                            <textarea placeholder="Your Message *" required rows="4" class="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-sm px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none form-input resize-none"></textarea>
+                            <button type="submit" class="btn-gold w-full py-4 rounded-sm text-xs tracking-[0.2em] uppercase"><span>Send Message</span></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="fade-right">
+                    <div class="rounded-sm overflow-hidden border border-[var(--border)] h-full min-h-[400px]">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9078!2d72.8296!3d19.1364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9b888ae97fd%3A0x8f0a7a7c0e0e5f0a!2sOshiwara%2C%20Jogeshwari%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;min-height:400px;filter:grayscale(.3) contrast(1.1)" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative pt-20 pb-8 border-t border-[var(--border)]" style="background:var(--bg-tertiary)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 border border-gold/40 flex items-center justify-center"><span class="font-display text-gold text-xl font-semibold">L</span></div>
+                        <div><span class="font-display text-lg text-[var(--text)]">Luxe Furniture</span><p class="text-[8px] tracking-[0.25em] uppercase text-[var(--text-muted)] leading-none">Luxury Crafted</p></div>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Premium furniture showroom in Oshiwara, Mumbai. Handcrafted luxury furniture by Mr Saif Khan.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-muted)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-9 h-9 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-muted)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-9 h-9 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-muted)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-9 h-9 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-muted)] hover:text-gold hover:border-gold/40 transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#hero" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">About Us</a></li>
+                        <li><a href="#custom" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Custom Furniture</a></li>
+                        <li><a href="#gallery" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Gallery</a></li>
+                        <li><a href="#testimonials" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Sofas</a></li>
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Dining Furniture</a></li>
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Tables</a></li>
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Chairs</a></li>
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Bedroom Furniture</a></li>
+                        <li><a href="#categories" class="text-sm text-[var(--text-secondary)] hover:text-gold transition-colors">Office Furniture</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs tracking-[0.2em] uppercase text-gold font-medium mb-6">Contact Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm text-[var(--text-secondary)]"><i data-lucide="map-pin" class="w-4 h-4 text-gold mt-0.5 flex-shrink-0"></i>Oshiwara, Jogeshwari West, Mumbai</li>
+                        <li class="flex items-center gap-2 text-sm text-[var(--text-secondary)]"><i data-lucide="phone" class="w-4 h-4 text-gold flex-shrink-0"></i><a href="tel:9892199048" class="hover:text-gold transition-colors">+91 98921 99048</a></li>
+                        <li class="flex items-center gap-2 text-sm text-[var(--text-secondary)]"><i data-lucide="mail" class="w-4 h-4 text-gold flex-shrink-0"></i><a href="mailto:info@luxefurniture.in" class="hover:text-gold transition-colors">info@luxefurniture.in</a></li>
+                        <li class="flex items-center gap-2 text-sm text-[var(--text-secondary)]"><i data-lucide="clock" class="w-4 h-4 text-gold flex-shrink-0"></i>Mon-Sat: 10AM - 9PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[var(--border)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-[var(--text-muted)]">Copyright &copy; 2025 Luxe Furniture. All rights reserved.</p>
+                <p class="text-xs text-[var(--text-muted)]">Designed with <span class="text-gold">&hearts;</span> in Mumbai by Mr Saif Khan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919892199048?text=Hi%20Mr%20Saif%2C%20I%20visited%20your%20Luxe%20Furniture%20website%20and%20I%20am%20interested%20in%20your%20furniture.%20Can%20you%20please%20help%20me%3F" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl whatsapp-pulse hover:scale-110 transition-transform duration-300" title="Chat on WhatsApp">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 left-6 z-50 w-12 h-12 border border-[var(--border)] rounded-sm flex items-center justify-center text-[var(--text-muted)] hover:text-gold hover:border-gold/40 transition-all duration-300 opacity-0 invisible" style="background:var(--glass-bg);backdrop-filter:blur(10px)"><i data-lucide="chevron-up" class="w-5 h-5"></i></button>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        const categoriesData = [
+            {
+                id:'sofas', name:'Sofas', filter:'seating',
+                image:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+                subtitle:'Luxury modern sectional sofas',
+                items:[
+                    {name:'L-Shape Sofa',img:'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400&q=80'},
+                    {name:'Leather Sofa',img:'https://images.unsplash.com/photo-1550254478-ead40cc54513?w=400&q=80'},
+                    {name:'Fabric Sofa',img:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80'},
+                    {name:'Recliner Sofa',img:'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&q=80'},
+                    {name:'Chesterfield Sofa',img:'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80'},
+                    {name:'Modular Sofa',img:'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=400&q=80'},
+                    {name:'Corner Sofa',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&q=80'}
+                ]
+            },
+            {
+                id:'dining', name:'Dining Furniture', filter:'tables',
+                image:'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80',
+                subtitle:'Luxury marble & wooden dining sets',
+                items:[
+                    {name:'4 Seater Dining',img:'https://images.unsplash.com/photo-1604074131665-7a4b13870ab3?w=400&q=80'},
+                    {name:'6 Seater Dining',img:'https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=400&q=80'},
+                    {name:'8 Seater Dining',img:'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400&q=80'},
+                    {name:'Marble Dining',img:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&q=80'},
+                    {name:'Wooden Dining',img:'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&q=80'},
+                    {name:'Glass Dining',img:'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=400&q=80'}
+                ]
+            },
+            {
+                id:'tables', name:'Tables', filter:'tables',
+                image:'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=600&q=80',
+                subtitle:'Modern wooden & glass tables',
+                items:[
+                    {name:'Coffee Table',img:'https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=400&q=80'},
+                    {name:'Center Table',img:'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=80'},
+                    {name:'Side Table',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'},
+                    {name:'Console Table',img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80'},
+                    {name:'Office Table',img:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400&q=80'},
+                    {name:'Study Table',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'}
+                ]
+            },
+            {
+                id:'chairs', name:'Chairs', filter:'seating',
+                image:'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=600&q=80',
+                subtitle:'Luxury accent & dining chairs',
+                items:[
+                    {name:'Dining Chair',img:'https://images.unsplash.com/photo-1551298370-9d3d53740c72?w=400&q=80'},
+                    {name:'Lounge Chair',img:'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=400&q=80'},
+                    {name:'Accent Chair',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80'},
+                    {name:'Office Chair',img:'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400&q=80'},
+                    {name:'Wooden Chair',img:'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=400&q=80'},
+                    {name:'Rocking Chair',img:'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400&q=80'}
+                ]
+            },
+            {
+                id:'premium-chairs', name:'Premium Chairs', filter:'seating',
+                image:'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80',
+                subtitle:'Royal king throne & executive chairs',
+                items:[
+                    {name:"King's Chair",img:'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80'},
+                    {name:'Throne Chair',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80'},
+                    {name:'Luxury Couch Chair',img:'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=400&q=80'},
+                    {name:'Executive Chair',img:'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400&q=80'},
+                    {name:'Designer Chair',img:'https://images.unsplash.com/photo-1551298370-9d3d53740c72?w=400&q=80'},
+                    {name:'Royal Chair',img:'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=400&q=80'}
+                ]
+            },
+            {
+                id:'bedroom', name:'Bedroom Furniture', filter:'bedroom',
+                image:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',
+                subtitle:'Luxury king-size bedroom sets',
+                items:[
+                    {name:'King-size Bed',img:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80'},
+                    {name:'Queen Bed',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&q=80'},
+                    {name:'Dressing Table',img:'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=80'},
+                    {name:'Wardrobe',img:'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=400&q=80'},
+                    {name:'Bedside Table',img:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80'},
+                    {name:'Storage Bed',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&q=80'}
+                ]
+            },
+            {
+                id:'office', name:'Office Furniture', filter:'office',
+                image:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80',
+                subtitle:'Premium executive office setups',
+                items:[
+                    {name:'Executive Desk',img:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400&q=80'},
+                    {name:'Office Chair',img:'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400&q=80'},
+                    {name:'Workstation',img:'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=400&q=80'},
+                    {name:'Reception Desk',img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80'},
+                    {name:'Meeting Table',img:'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400&q=80'},
+                    {name:'Filing Cabinet',img:'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=400&q=80'}
+                ]
+            }
+        ];
+
+        const galleryData = [
+            {img:'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80',cat:'living',title:'Modern Living Room with L-Shape Sofa'},
+            {img:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80',cat:'bedroom',title:'Luxury King-Size Bed with Upholstered Headboard'},
+            {img:'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80',cat:'dining',title:'Marble Dining Table Set for 6'},
+            {img:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80',cat:'office',title:'Executive Office Desk Setup'},
+            {img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',cat:'hospitality',title:'Hotel Lobby Premium Seating'},
+            {img:'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80',cat:'living',title:'Contemporary Sectional Sofa in Living Room'},
+            {img:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&q=80',cat:'hospitality',title:'Fine Dining Restaurant Furniture'},
+            {img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80',cat:'bedroom',title:'Elegant Bedroom with Queen Bed'},
+            {img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',cat:'commercial',title:'Modern Commercial Office Space'},
+            {img:'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80',cat:'dining',title:'8 Seater Wooden Dining Table'},
+            {img:'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80',cat:'commercial',title:'Chesterfield Sofa in Premium Villa'},
+            {img:'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=600&q=80',cat:'office',title:'Open Plan Office Workstations'},
+            {img:'https://images.unsplash.com/photo-1550254478-ead40cc54513?w=600&q=80',cat:'living',title:'Leather Sofa in Luxury Living Room'},
+            {img:'https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=600&q=80',cat:'hospitality',title:'Café Lounge Seating Area'},
+            {img:'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80',cat:'bedroom',title:'Bedroom with Dressing Table'},
+            {img:'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',cat:'commercial',title:'Custom Wardrobe Installation'}
+        ];
+
+        const testimonialsData = [
+            {name:'Rajesh Mehta',role:'Homeowner, Andheri',text:'Absolutely stunning furniture! Mr Saif and his team delivered a complete living room set that exceeded our expectations. The quality of the sofa and center table is unparalleled.',rating:5,img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80'},
+            {name:'Priya Sharma',role:'Interior Designer',text:'I regularly recommend Luxe Furniture to my clients. Their custom furniture solutions are fantastic, and the attention to detail in every piece is remarkable. Truly premium quality.',rating:5,img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'},
+            {name:'Ahmed Khan',role:'Hotel Owner, Juhu',text:'We furnished our entire hotel with Luxe Furniture. From the lobby to the rooms, every piece reflects luxury. Mr Saif understood our vision perfectly and delivered on time.',rating:5,img:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80'},
+            {name:'Sneha Patel',role:'Restaurant Owner, Bandra',text:'The dining furniture for our restaurant is absolutely gorgeous. Guests always compliment the chairs and tables. Great craftsmanship and excellent after-sales service.',rating:4,img:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80'},
+            {name:'Vikram Joshi',role:'CEO, Corporate Office',text:'Our entire office was outfitted by Luxe Furniture. The executive desks and conference table look world-class. Professional team with impeccable taste.',rating:5,img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80'},
+            {name:'Nisha Desai',role:'Villa Owner, Lokhandwala',text:'From our king-size bed to the custom wardrobe, everything is perfect. The bespoke furniture they created for our villa is truly one-of-a-kind. Highly recommended!',rating:5,img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80'}
+        ];
+
+        let wishlist=[];
+        let currentTestimonial=0;
+        let currentLightboxIndex=0;
+        let filteredGallery=[...galleryData];
+
+        document.addEventListener('DOMContentLoaded',()=>{
+            setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},1200);
+            lucide.createIcons();
+            renderCategories('all');
+            renderGallery('all');
+            renderTestimonials();
+            initScrollAnimations();
+            initParallax();
+            initNavScroll();
+            document.addEventListener('keydown',(e)=>{
+                if(e.key==='Escape'){closeSearch();closeCategoryModal();closeLightbox();if(document.getElementById('wishlist-sidebar').classList.contains('open'))toggleWishlist();if(document.getElementById('mobile-menu').classList.contains('open'))toggleMobileMenu()}
+                if(e.key==='/'&&!e.ctrlKey&&!e.metaKey){const a=document.activeElement;if(a.tagName!=='INPUT'&&a.tagName!=='TEXTAREA'){e.preventDefault();openSearch()}}
+            });
+            const saved=localStorage.getItem('luxe-theme');
+            if(saved){document.documentElement.setAttribute('data-theme',saved);updateThemeIcons()}
+        });
+
+        function renderCategories(filter){
+            const grid=document.getElementById('categories-grid');
+            const filtered=filter==='all'?categoriesData:categoriesData.filter(c=>c.filter===filter);
+            grid.innerHTML=filtered.map((cat,i)=>`
+                <div class="category-card group cursor-pointer scale-in" style="transition-delay:${i*80}ms" onclick="openCategoryModal('${cat.id}')">
+                    <div class="relative overflow-hidden rounded-sm border border-[var(--border)] hover:border-gold/40 transition-colors duration-500" style="background:var(--card-bg)">
+                        <div class="aspect-[3/4] overflow-hidden img-zoom"><img src="${cat.image}" alt="${cat.name} - Luxe Furniture" class="card-img w-full h-full object-cover" loading="lazy"></div>
+                        <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 flex flex-col justify-end p-6">
+                            <p class="text-gold text-[10px] tracking-[0.2em] uppercase mb-2">${cat.items.length} Products</p>
+                            <span class="text-white text-sm tracking-wider flex items-center gap-2">View Collection <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                            <h3 class="font-display text-lg text-white">${cat.name}</h3>
+                            <p class="text-xs text-white/60 mt-1">${cat.subtitle}</p>
+                        </div>
+                        <div class="absolute top-4 right-4"><button onclick="event.stopPropagation();toggleWishlistItem('${cat.id}','${cat.name}','${cat.image}')" class="heart-btn w-9 h-9 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center ${wishlist.includes(cat.id)?'active':''}" data-id="${cat.id}"><i data-lucide="heart" class="w-4 h-4 ${wishlist.includes(cat.id)?'text-gold':'text-white/70'}"></i></button></div>
+                    </div>
+                </div>`).join('');
+            lucide.createIcons();
+            setTimeout(()=>{grid.querySelectorAll('.scale-in').forEach(el=>el.classList.add('visible'))},50);
+        }
+
+        function filterCategories(filter){
+            document.querySelectorAll('.cat-filter').forEach(btn=>{
+                if(btn.dataset.filter===filter){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#C9A96E,#A08040)';btn.style.color='#0A0A0A';btn.style.borderColor='#C9A96E'}
+                else{btn.classList.remove('active');btn.style.background='transparent';btn.style.color='';btn.style.borderColor=''}
+            });
+            renderCategories(filter);
+        }
+
+        function openCategoryModal(catId){
+            const cat=categoriesData.find(c=>c.id===catId);if(!cat)return;
+            document.getElementById('modal-cat-title').textContent=cat.name;
+            document.getElementById('modal-cat-subtitle').textContent=cat.subtitle;
+            document.getElementById('modal-products').innerHTML=cat.items.map(item=>`
+                <div class="group rounded-sm border border-[var(--border)] overflow-hidden hover:border-gold/40 transition-colors duration-300" style="background:var(--card-bg)">
+                    <div class="aspect-square overflow-hidden img-zoom"><img src="${item.img}" alt="${item.name} - Luxe Furniture ${cat.name}" class="w-full h-full object-cover" loading="lazy"></div>
+                    <div class="p-4 flex items-center justify-between">
+                        <h4 class="text-sm font-medium text-[var(--text)]">${item.name}</h4>
+                        <div class="flex gap-2">
+                            <button onclick="toggleWishlistItem('${catId}-${item.name.replace(/'/g,"\\'")}','${item.name}','${item.img}')" class="heart-btn w-8 h-8 flex items-center justify-center text-[var(--text-muted)] hover:text-gold transition-colors ${wishlist.includes(catId+'-'+item.name)?'active':''}" data-id="${catId}-${item.name}"><i data-lucide="heart" class="w-4 h-4"></i></button>
+                            <a href="https://wa.me/919892199048?text=Hi%20Mr%20Saif%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(item.name)}%20from%20${encodeURIComponent(cat.name)}%20category%20at%20Luxe%20Furniture." target="_blank" class="w-8 h-8 flex items-center justify-center text-[var(--text-muted)] hover:text-gold transition-colors"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+                </div>`).join('');
+            document.getElementById('category-modal').classList.add('open');
+            document.body.style.overflow='hidden';
+            lucide.createIcons();
+        }
+
+        function closeCategoryModal(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('category-modal').classList.remove('open');document.body.style.overflow=''}
+
+        function renderGallery(filter){
+            filteredGallery=filter==='all'?[...galleryData]:galleryData.filter(g=>g.cat===filter);
+            const grid=document.getElementById('gallery-grid');
+            grid.innerHTML=filteredGallery.map((item,i)=>`
+                <div class="masonry-item gallery-item" data-cat="${item.cat}">
+                    <div class="group relative overflow-hidden rounded-sm cursor-pointer img-zoom" onclick="openLightbox(${i})">
+                        <img src="${item.img}" alt="${item.title} - Luxe Furniture Project" class="w-full block" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-center justify-center">
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                                <i data-lucide="zoom-in" class="w-8 h-8 text-gold mx-auto mb-2"></i>
+                                <p class="text-white text-sm font-medium">${item.title}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`).join('');
+            lucide.createIcons();
+        }
+
+        function filterGallery(filter){
+            document.querySelectorAll('.gal-filter').forEach(btn=>{
+                if(btn.dataset.filter===filter){btn.classList.add('active');btn.style.background='linear-gradient(135deg,#C9A96E,#A08040)';btn.style.color='#0A0A0A';btn.style.borderColor='#C9A96E'}
+                else{btn.classList.remove('active');btn.style.background='transparent';btn.style.color='';btn.style.borderColor=''}
+            });
+            renderGallery(filter);
+        }
+
+        function openLightbox(index){currentLightboxIndex=index;document.getElementById('lightbox-img').src=filteredGallery[index].img;document.getElementById('lightbox').classList.remove('hidden');document.body.style.overflow='hidden'}
+        function closeLightbox(){document.getElementById('lightbox').classList.add('hidden');document.body.style.overflow=''}
+        function lightboxNav(dir){currentLightboxIndex=(currentLightboxIndex+dir+filteredGallery.length)%filteredGallery.length;document.getElementById('lightbox-img').src=filteredGallery[currentLightboxIndex].img}
+
+        function renderTestimonials(){
+            const track=document.getElementById('testimonial-track');
+            track.innerHTML=testimonialsData.map(t=>`
+                <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-3">
+                    <div class="p-8 rounded-sm border border-[var(--border)] h-full flex flex-col" style="background:var(--card-bg)">
+                        <div class="flex gap-1 mb-4">${'<i data-lucide="star" class="w-4 h-4 star fill-current"></i>'.repeat(t.rating)}${'<i data-lucide="star" class="w-4 h-4 text-[var(--text-muted)]"></i>'.repeat(5-t.rating)}</div>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed flex-1">"${t.text}"</p>
+                        <div class="flex items-center gap-3 mt-6 pt-6 border-t border-[var(--border)]">
+                            <img src="${t.img}" alt="${t.name} - Luxe Furniture Client" class="w-10 h-10 rounded-full object-cover border border-gold/30">
+                            <div><p class="text-sm font-medium text-[var(--text)]">${t.name}</p><p class="text-xs text-[var(--text-muted)]">${t.role}</p></div>
+                        </div>
+                    </div>
+                </div>`).join('');
+            const dots=document.getElementById('testimonial-dots');
+            const pages=getTestimonialPages();
+            dots.innerHTML=Array.from({length:pages},(_,i)=>`<button onclick="goToTestimonial(${i})" class="w-2 h-2 rounded-full transition-all duration-300 ${i===0?'bg-gold w-6':'bg-[var(--border)]'}" data-dot="${i}"></button>`).join('');
+            lucide.createIcons();
+        }
+
+        function getTestimonialPages(){const w=window.innerWidth;const p=w>=1024?3:w>=768?2:1;return Math.max(1,testimonialsData.length-p+1)}
+        function getTestimonialSlideWidth(){const w=window.innerWidth;return w>=1024?33.333:w>=768?50:100}
+        function updateTestimonialPosition(){document.getElementById('testimonial-track').style.transform=`translateX(-${currentTestimonial*getTestimonialSlideWidth()}%)`;document.querySelectorAll('[data-dot]').forEach((d,i)=>{d.className=`w-2 h-2 rounded-full transition-all duration-300 ${i===currentTestimonial?'bg-gold w-6':'bg-[var(--border)]'}`})}
+        function navTestimonial(dir){const p=getTestimonialPages();currentTestimonial=(currentTestimonial+dir+p)%p;updateTestimonialPosition()}
+        function goToTestimonial(i){currentTestimonial=i;updateTestimonialPosition()}
+
+        function toggleWishlistItem(id,name,img){
+            const idx=wishlist.findIndex(w=>w.id===id);
+            if(idx>-1){wishlist.splice(idx,1);showToast('Removed from wishlist')}
+            else{wishlist.push({id,name,img});showToast('Added to wishlist \u2764\uFE0F')}
+            updateWishlistUI();updateHeartButtons();
+        }
+
+        function updateWishlistUI(){
+            const c=document.getElementById('wishlist-count');
+            if(wishlist.length>0){c.textContent=wishlist.length;c.classList.remove('hidden')}else{c.classList.add('hidden')}
+            const container=document.getElementById('wishlist-items');
+            if(!wishlist.length){container.innerHTML='<div class="text-center py-16"><i data-lucide="heart" class="w-12 h-12 text-[var(--border)] mx-auto mb-4"></i><p class="text-[var(--text-muted)] text-sm">Your wishlist is empty</p></div>'}
+            else{container.innerHTML=wishlist.map(item=>`<div class="flex items-center gap-4 p-3 rounded-sm border border-[var(--border)] mb-3" style="background:var(--bg-secondary)"><img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-sm"><div class="flex-1 min-w-0"><p class="text-sm font-medium text-[var(--text)] truncate">${item.name}</p><p class="text-xs text-[var(--text-muted)]">Premium Quality</p></div><button onclick="toggleWishlistItem('${item.id.replace(/'/g,"\\'")}','${item.name.replace(/'/g,"\\'")}','${item.img}')" class="text-[var(--text-muted)] hover:text-red-400 transition-colors flex-shrink-0"><i data-lucide="x" class="w-4 h-4"></i></button></div>`).join('')}
+            lucide.createIcons();
+        }
+
+        function updateHeartButtons(){
+            document.querySelectorAll('.heart-btn').forEach(btn=>{
+                const id=btn.dataset.id;
+                const icon=btn.querySelector('[data-lucide]');
+                if(wishlist.find(w=>w.id===id)){btn.classList.add('active');if(icon){icon.style.fill='#C9A96E';icon.style.stroke='#C9A96E'}}
+                else{btn.classList.remove('active');if(icon){icon.style.fill='none';icon.style.stroke=''}}
+            });
+        }
+
+        function toggleWishlist(){
+            const s=document.getElementById('wishlist-sidebar');
+            const o=document.getElementById('wishlist-overlay');
+            s.classList.toggle('open');o.classList.toggle('hidden');
+            document.body.style.overflow=s.classList.contains('open')?'hidden':'';
+            updateWishlistUI();
+        }
+
+        function openSearch(){document.getElementById('search-modal').classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('search-input').focus(),100)}
+        function closeSearch(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('search-modal').classList.remove('open');document.body.style.overflow='';document.getElementById('search-input').value='';document.getElementById('search-results').classList.add('hidden')}
+
+        function handleSearch(query){
+            const results=document.getElementById('search-results');
+            if(!query.trim()){results.classList.add('hidden');return}
+            const q=query.toLowerCase();let matches=[];
+            categoriesData.forEach(cat=>{
+                if(cat.name.toLowerCase().includes(q))matches.push({type:'category',name:cat.name,id:cat.id,img:cat.image});
+                cat.items.forEach(item=>{if(item.name.toLowerCase().includes(q))matches.push({type:'product',name:item.name,category:cat.name,id:cat.id,img:item.img})});
+            });
+            if(!matches.length){results.innerHTML='<div class="p-6 text-center text-[var(--text-muted)] text-sm">No results found</div>'}
+            else{results.innerHTML=matches.slice(0,10).map(m=>`<div class="flex items-center gap-4 p-4 hover:bg-[var(--bg-secondary)] cursor-pointer transition-colors border-b border-[var(--border)] last:border-0" onclick="closeSearch();openCategoryModal('${m.id}')"><img src="${m.img}" class="w-12 h-12 object-cover rounded-sm" alt="${m.name}"><div><p class="text-sm font-medium text-[var(--text)]">${m.name}</p><p class="text-xs text-[var(--text-muted)]">${m.type==='product'?m.category:'Category'}</p></div><i data-lucide="arrow-right" class="w-4 h-4 text-[var(--text-muted)] ml-auto"></i></div>`).join('')}
+            results.classList.remove('hidden');lucide.createIcons();
+        }
+
+        function toggleTheme(){
+            const html=document.documentElement;const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+            html.setAttribute('data-theme',next);localStorage.setItem('luxe-theme',next);updateThemeIcons();
+        }
+
+        function updateThemeIcons(){
+            const t=document.documentElement.getAttribute('data-theme');
+            document.getElementById('icon-sun').classList.toggle('hidden',t==='dark');
+            document.getElementById('icon-moon').classList.toggle('hidden',t==='light');
+        }
+
+        function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobile-menu').classList.contains('open')?'hidden':''}
+        function handleCustomForm(e){e.preventDefault();showToast('Custom quote request submitted! We will contact you soon.','success');e.target.reset();document.getElementById('file-name').classList.add('hidden')}
+        function handleContactForm(e){e.preventDefault();showToast('Message sent successfully! Thank you for reaching out.','success');e.target.reset()}
+        function handleFileUpload(input){const fn=document.getElementById('file-name');if(input.files.length>0){fn.textContent='\uD83D\uDCE7 '+input.files[0].name;fn.classList.remove('hidden')}}
+
+        function showToast(message,type='info'){
+            const c=document.getElementById('toast-container');const t=document.createElement('div');
+            t.className=`toast glass ${type==='success'?'border-gold/50':'border-[var(--border)]'} border rounded-sm px-5 py-3 text-sm text-[var(--text)] max-w-xs shadow-2xl`;
+            t.textContent=message;c.appendChild(t);setTimeout(()=>t.remove(),3200);
+        }
+
+        function initScrollAnimations(){
+            const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+            document.querySelectorAll('.fade-up,.fade-left,.fade-right,.scale-in').forEach(el=>obs.observe(el));
+        }
+
+        function initParallax(){
+            const hero=document.querySelector('.hero-parallax');let ticking=false;
+            window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const s=window.pageYOffset;if(s<window.innerHeight)hero.style.transform=`translateY(${s*0.4}px)`;ticking=false});ticking=true}});
+        }
+
+        function initNavScroll(){
+            const nav=document.getElementById('navbar');const btt=document.getElementById('back-to-top');
+            window.addEventListener('scroll',()=>{
+                if(window.scrollY>80){nav.classList.add('nav-scrolled');btt.style.opacity='1';btt.style.visibility='visible'}
+                else{nav.classList.remove('nav-scrolled');btt.style.opacity='0';btt.style.visibility='hidden'}
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded',()=>{
+            document.querySelectorAll('.cat-filter.active,.gal-filter.active').forEach(btn=>{btn.style.background='linear-gradient(135deg,#C9A96E,#A08040)';btn.style.color='#0A0A0A';btn.style.borderColor='#C9A96E'});
+        });
+    </script>
+</body>
+</html>
